@@ -1,24 +1,27 @@
 <%--
   Created by IntelliJ IDEA.
   User: 김선미
-  Date: 25. 6. 4.
-  Time: 오전 11:42
+  Date: 25. 6. 5.
+  Time: 오전 9:39
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String userid = request.getParameter("userid");
     String userpw = request.getParameter("userpw");
-    String[] hobby = request.getParameterValues("hobby");
+
+    if(userid.equals("admin") && userpw.equals("1234")){
+        session.setAttribute("userid", userid);
+        response.sendRedirect("7_session_success.jsp");
+    }else{
+        response.sendRedirect("7_session_fail.jsp");
+    }
 %>
 <html>
 <head>
-    <title>request</title>
+    <title>session</title>
 </head>
 <body>
-    <p>아이디: <%=userid%></p>
-    <p>비밀번호: <%=userpw%></p>
-    <p>취미: <%=Arrays.toString(hobby)%></p>
+
 </body>
 </html>
